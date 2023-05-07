@@ -4,6 +4,8 @@
     "module": "commonjs",
     "outDir": "dist",
     "sourceMap": false,
+    "strict": true,
+    "alwaysStrict": true
   },
   "include":["./src/**/*"],
   "exclude": ["node_modules", "dist"]

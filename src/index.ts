@@ -1,15 +1,18 @@
-import { Client, GatewayIntentBits, Collection, PermissionFlagsBits, } from "discord.js";
-//import { Command, SlashCommand } from './types'
-import { readdirSync } from "fs";
-import { join } from 'path'
-import { config } from 'dotenv'
+import { config } from 'dotenv'; config();
+import { Client, Events, GatewayIntentBits } from 'discord.js';
+import { join } from 'path';
+import { readdirSync } from 'fs';
 
-config();
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const { Guilds, MessageContent, GuildMessages, GuildMembers } = GatewayIntentBits;
-const client = new Client({ intents: [Guilds, MessageContent, GuildMessages, GuildMembers] });
 
-const handlers = join(__dirname, 'handlers');
-readdirSync(handlers).forEach((file) => {require(`${handlers}/${file}`)(client)});
+const handlers = join(__dirname, "handlers");
 
-client.login(process.env.TOKEN);
+readdirSync(handlers).forEach(file => {
+    if (!file.endsWith(".js") && !file.endsWith(".ts")) return;
+    let handler = require(`${handlers}/${file}`);
+    handler(client);
+    console.log(`Successfully loaded handler ${file}`);
+});
+
+client.login(process.env.TOKEN)
