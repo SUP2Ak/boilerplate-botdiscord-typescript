@@ -1,0 +1,30 @@
+{
+    "name": "mon-projet-discord-bot",
+    "version": "1.0.0",
+    "description": "Mon super bot Discord en TypeScript",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon --exec ts-node src/index.ts",
+        "start": "node dist/index.js",
+        "build": "tsc"
+    },
+    "keywords": [],
+    "author": "MericcaN41",
+    "license": "ISC",
+    "dependencies": {
+        "@discordjs/builders": "^1.6.3",
+        "@discordjs/rest": "^1.1.0",
+        "@types/node": "^18.7.14",
+        "chalk": "^4.1.2",
+        "discord-api-types": "^0.37.41",
+        "discord.js": "^14.11.0",
+        "dotenv": "^16.0.2"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.22",
+        "typescript": "^4.8.2"
+    },
+    "overrides": {
+        "discord-api-types": "0.37.20"
+    }
+}
